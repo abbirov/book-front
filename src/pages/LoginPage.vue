@@ -30,6 +30,9 @@ export default {
         ...mapActions(['fetchToken']),
         auth(){
             this.fetchToken(this.form)
+                .then(() => {
+                    this.$router.push('/')
+                })
         }
     }
 

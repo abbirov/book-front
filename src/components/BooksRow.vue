@@ -1,80 +1,17 @@
 <template>
     <!-- kitoblar qatori boshlandi -->
     <div class="row">
+        <h1>{{bookTitle}}</h1>
 
         <!-- kitob boshlandi -->
-        <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
+        <div  v-for="book of getBooks" :key="book.id"
+            class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
             <div class="card">
-                <img src="img/otkan-kunlar.jpg" class="card-img-top" alt="...">
+                <img src="#" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">O'tkan kunlar</h5>
-                    <p class="card-text">Otabek va ikki qiz, yohud sevgi uchburchagi...</p>
-                    <a href="book.html" class="btn btn-primary">O'qish</a>
-                </div>
-            </div>
-        </div>
-        <!-- kitob tugadi -->
-
-        <!-- kitob boshlandi -->
-        <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
-            <div class="card">
-                <img src="img/otkan-kunlar.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">O'tkan kunlar</h5>
-                    <p class="card-text">Otabek va ikki qiz, yohud sevgi uchburchagi...</p>
-                    <a href="book.html" class="btn btn-primary">O'qish</a>
-                </div>
-            </div>
-        </div>
-        <!-- kitob tugadi -->
-
-        <!-- kitob boshlandi -->
-        <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
-            <div class="card">
-                <img src="img/otkan-kunlar.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">O'tkan kunlar</h5>
-                    <p class="card-text">Otabek va ikki qiz, yohud sevgi uchburchagi...</p>
-                    <a href="book.html" class="btn btn-primary">O'qish</a>
-                </div>
-            </div>
-        </div>
-        <!-- kitob tugadi -->
-
-        <!-- kitob boshlandi -->
-        <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
-            <div class="card">
-                <img src="img/otkan-kunlar.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">O'tkan kunlar</h5>
-                    <p class="card-text">Otabek va ikki qiz, yohud sevgi uchburchagi...</p>
-                    <a href="book.html" class="btn btn-primary">O'qish</a>
-                </div>
-            </div>
-        </div>
-        <!-- kitob tugadi -->
-
-        <!-- kitob boshlandi -->
-        <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
-            <div class="card">
-                <img src="img/otkan-kunlar.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">O'tkan kunlar</h5>
-                    <p class="card-text">Otabek va ikki qiz, yohud sevgi uchburchagi...</p>
-                    <a href="book.html" class="btn btn-primary">O'qish</a>
-                </div>
-            </div>
-        </div>
-        <!-- kitob tugadi -->
-
-        <!-- kitob boshlandi -->
-        <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
-            <div class="card">
-                <img src="img/otkan-kunlar.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">O'tkan kunlar</h5>
-                    <p class="card-text">Otabek va ikki qiz, yohud sevgi uchburchagi...</p>
-                    <a href="book.html" class="btn btn-primary">O'qish</a>
+                    <h5 class="card-title">{{book.name}}</h5>
+                    <p class="card-text">{{book.description}}</p>
+                    <router-link to="/read-book" class="btn btn-primary">O'qish</router-link>
                 </div>
             </div>
         </div>
@@ -85,8 +22,22 @@
 </template>
 
 <script>
+import {mapActions, mapGetters} from "vuex";
+
 export default {
-    name: "BooksRow"
+    name: "BooksRow",
+    computed: {
+        ...mapGetters(['getBooks']),
+        bookTitle(){
+            return 'Kitoblar'
+        }
+    },
+    methods: {
+        ...mapActions(['fetchBooks'])
+    },
+    mounted() {
+        this.fetchBooks()
+    }
 }
 </script>
 
