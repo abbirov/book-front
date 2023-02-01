@@ -1,7 +1,7 @@
 <template>
     <!-- kitoblar qatori boshlandi -->
     <div class="row">
-        <h1>{{bookTitle}}</h1>
+        <h2>{{bookTitle}}</h2>
 
         <!-- kitob boshlandi -->
         <div  v-for="book of getBooks" :key="book.id"
@@ -27,16 +27,22 @@ import {mapActions, mapGetters} from "vuex";
 export default {
     name: "BooksRow",
     computed: {
-        ...mapGetters(['getBooks']),
+        ...mapGetters(['getBooks', "getCategories"]),
         bookTitle(){
             return 'Kitoblar'
         }
     },
     methods: {
-        ...mapActions(['fetchBooks'])
+        ...mapActions(['fetchBooks', 'fetchCategories'])
     },
     mounted() {
-        this.fetchBooks()
+        this.fetchBooks(this.$route.params.id)
+        this.fetchCategories()
+    },
+    watch: {
+        '$route.params.id'() {
+            this.fetchBooks(this.$route.params.id)
+        }
     }
 }
 </script>

@@ -1,20 +1,33 @@
 <template>
     <!-- category boshlandi -->
-    <div class="col-12 col-md-2">
+    <div class="col-12 col-md-2 mt-5">
         <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action">Detektiv</a>
-            <a href="#" class="list-group-item list-group-item-action active" aria-current="true">Klassika</a>
-            <a href="#" class="list-group-item list-group-item-action">Komediya</a>
-            <a href="#" class="list-group-item list-group-item-action">Romantika</a>
-            <a href="#" class="list-group-item list-group-item-action">Fantastika</a>
+            <router-link
+                v-for="category of getCategories" :key="category.id"
+                :to="'/categories/' + category.id"
+                class="list-group-item list-group-item-action" exact-active-class="active"
+            >
+                {{category.name}}
+            </router-link>
         </div>
     </div>
     <!-- category tugadi -->
 </template>
 
 <script>
+import {mapActions, mapGetters} from "vuex";
+
 export default {
-    name: "CategoryCol"
+    name: "CategoryCol",
+    computed: {
+        ...mapGetters(['getCategories'])
+    },
+    methods: {
+        ...mapActions(['fetchCategories'])
+    },
+    mounted() {
+        this.fetchCategories()
+    }
 }
 </script>
 
