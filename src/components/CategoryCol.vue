@@ -1,6 +1,6 @@
 <template>
     <!-- category boshlandi -->
-    <div class="col-12 col-md-2 mt-5">
+    <div class="col-12 col-md-2 mt-4">
         <div class="list-group">
             <router-link
                 v-for="category of getCategories" :key="category.id"

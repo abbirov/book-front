@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{book.name}}</h5>
                     <p class="card-text">{{book.description}}</p>
-                    <router-link to="/read-book" class="btn btn-primary">O'qish</router-link>
+                    <router-link :to="'/read-book/' + book.id" class="btn btn-primary">O'qish</router-link>
                 </div>
             </div>
         </div>

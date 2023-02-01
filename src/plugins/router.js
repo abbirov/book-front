@@ -15,7 +15,7 @@ const routes = [
         component: () => import('@/pages/LoginPage.vue')
     },
     {
-        path: '/read-book',
+        path: '/read-book/:bookId',
         component: () => import('@/pages/ReadBookPage.vue')
     }
 ]
